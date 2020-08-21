@@ -1,0 +1,24 @@
+class Solution {
+    public int[] sortArrayByParity(int[] A) {
+        
+        if(A == null || A.length == 1) return A;
+        
+        int[] sorted = new int[A.length];
+        
+        int e_index = 0, o_index = A.length-1;
+        
+        for(int i : A){
+            if(i % 2 == 0) {
+                sorted[e_index] = i;
+                e_index++;
+            }
+            
+            if(i % 2 != 0) {
+                sorted[o_index] = i;
+                o_index--;
+            }
+        }
+          
+        return sorted;
+    }
+}
