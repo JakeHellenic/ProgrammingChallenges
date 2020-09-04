@@ -1,0 +1,33 @@
+public boolean repeatedSubstringPattern(String s) {
+
+    String str="";
+
+    for(int i=0;i<s.length()/2+1;i++){
+
+        if(i != 0 && s.charAt(i) == str.charAt(0)){
+
+            if(s.length() >= i + str.length()){
+
+                String compare_sub_str=s.substring(i, (i + (str.length())));
+
+                if(str.equals(compare_sub_str)){
+
+                    int divisible = s.length()/str.length();
+                    String compare_str ="";
+
+                    while(divisible != 0){
+                        compare_str += str;
+                        --divisible;
+                    }
+
+                    if(compare_str.equals(s))return true;
+
+                }else if(i > s.length()-compare_sub_str.length())return false;
+            }   
+        }
+
+        str+= s.charAt(i);
+    }       
+
+    return false;
+}  
