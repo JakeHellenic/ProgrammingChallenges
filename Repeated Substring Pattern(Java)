@@ -1,33 +1,34 @@
-public boolean repeatedSubstringPattern(String s) {
+public boolean repeatedSubstringPattern(String s){
 
-    String str="";
+  if(s == null)return false;
 
-    for(int i=0;i<s.length()/2+1;i++){
+  StringBuilder str = new StringBuilder("");
+
+      for(int i=0;i<s.length()/2+1;i++){
 
         if(i != 0 && s.charAt(i) == str.charAt(0)){
 
-            if(s.length() >= i + str.length()){
+          if(s.length() >= i + str.length()){
 
-                String compare_sub_str=s.substring(i, (i + (str.length())));
+            String compare_sub_str=s.substring(i, (i + (str.length())));
 
-                if(str.equals(compare_sub_str)){
+            if(str.toString().equals(compare_sub_str.toString())){
+                  
+              int divisible = s.length()/str.length();
+              StringBuilder compare_str = new StringBuilder("");
 
-                    int divisible = s.length()/str.length();
-                    String compare_str ="";
+              while(divisible != 0){
+                compare_str.append(str);
+                --divisible;
+              }
 
-                    while(divisible != 0){
-                        compare_str += str;
-                        --divisible;
-                    }
-
-                    if(compare_str.equals(s))return true;
-
-                }else if(i > s.length()-compare_sub_str.length())return false;
-            }   
+              if(compare_str.toString().equals(s))return true;
+            }
+            else if(i > s.length()-compare_sub_str.length())return false;
+          }
         }
-
-        str+= s.charAt(i);
-    }       
-
-    return false;
-}  
+        str.append(s.charAt(i));
+      }
+      
+  return false;
+}
