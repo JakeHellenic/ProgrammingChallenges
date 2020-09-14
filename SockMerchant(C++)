@@ -1,0 +1,12 @@
+int sockMerchant(int n, vector<int> ar) {
+    map<int, int> hm;
+    int socks =0;
+    for(int i : ar){
+        ++hm[i];
+        if(hm[i] % 2 == 0){
+            hm[i] = 0;
+            ++socks;        
+            }
+    }
+    return socks;
+}
