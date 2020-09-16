@@ -11,7 +11,7 @@
           if(counter == -1)return length;
       }
 
-      while(s[counter] != ' ' && counter != -1){
+      while(s[counter] != ' '){
           ++length;
           --counter;
           if(counter == -1)return length;
