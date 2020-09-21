@@ -1,0 +1,19 @@
+bool carPooling(vector<vector<int>>& trips, int capacity) {
+
+    if(trips.size() == 0) return false;
+
+    vector<int> passengers(1000);
+
+    for(auto trip : trips){
+        passengers[trip[1]] += trip[0];
+        passengers[trip[2]] -= trip[0];
+    }
+
+    int seats_filled = 0;
+    for(auto passenger : passengers){
+        if(seats_filled > capacity) return false;
+        seats_filled += passenger;
+    }
+
+    return true;
+}
