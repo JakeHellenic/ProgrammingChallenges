@@ -1,0 +1,26 @@
+public ListNode reverseList(ListNode head) {
+    if(head == null)return null;
+
+    List<ListNode> list = new ArrayList<>();
+
+    while(head != null){
+        list.add(head);
+        head=head.next;
+    }
+
+    int counter = list.size()-1;
+
+    while(counter != -1){
+
+        if(counter == list.size()-1)head = list.get(counter);
+
+        if(counter == 0){
+            list.get(counter).next = null;
+            break;
+        }
+
+        list.get(counter).next = list.get(--counter);
+
+    }
+    return head;
+}
