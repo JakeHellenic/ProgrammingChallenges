@@ -1,0 +1,14 @@
+public int firstMissingPositive(int[] nums) {
+
+    if(nums == null)return 1;
+
+    TreeSet list = new TreeSet<Integer>();
+
+    for(int i : nums)
+        if(i > 0)list.add(i);
+        
+    int counter = 1;
+    while(list.size() != 0 &&(int)list.pollFirst() == counter)counter++;
+
+    return counter;
+}
