@@ -1,0 +1,69 @@
+/**Experimenting with Trie Data Structure**/
+class Node{
+    private HashMap<Character, Node> children;
+    private boolean isWord;
+    private int letters;
+    
+    public Node(){
+        children = new HashMap<>();
+        isWord = false;
+        letters = 0;
+    }
+    
+    public int getLetters(){
+        return letters;
+    }
+    
+    public void insertWord(String s){
+        Node root = this;
+        
+        for(char c : s.toCharArray()){
+
+            if(root.children.get(c)==null){
+                root.children.put(c, new Node());
+            }
+            root = root.children.get(c);
+        }
+        
+        root.isWord = true;
+    }
+    
+    public boolean findWord(String s){
+        Node root = this;
+        
+        for(char c : s.toCharArray()){
+            letters++;
+            root = root.children.get(c);
+            if(root == null)return false;
+            if(root.isWord)return true;
+            
+        }
+
+        return root.isWord;
+    }
+}
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Node n = new Node();
+        
+        for(String word : wordDict){
+            n.insertWord(word);
+        }
+        
+        boolean found = n.findWord(s);
+        
+        int s_length = s.length();
+        
+        if(found && n.getLetters() == s_length)return true;
+        
+        if(found && n.getLetters() < s_length){
+            boolean next_search = true;
+            while(next_search && n.getLetters() < s_length)
+                   next_search = n.findWord(s.substring(n.getLetters(), s_length));
+            return next_search;
+        }
+        
+        return false;
+    }
+}
