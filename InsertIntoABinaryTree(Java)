@@ -1,0 +1,35 @@
+class Solution {
+    
+    public void findAndInsert(TreeNode root, int val){
+        
+        //Insert cases
+        if(root.left == null && root.val > val){
+            root.left = new TreeNode(val);
+            return;
+        }
+        if(root.right == null && root.val < val){
+            root.right = new TreeNode(val);
+            return;
+        }
+
+        //Find cases
+        if(root.left != null && root.val > val){
+            findAndInsert(root.left, val);
+        }
+        
+        if(root.right != null && root.val < val){
+            findAndInsert(root.right, val);
+        }
+        
+    }
+    
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        
+        if(root == null) return new TreeNode(val);
+        
+        findAndInsert(root, val);
+        
+        return root;        
+        
+    }
+}
