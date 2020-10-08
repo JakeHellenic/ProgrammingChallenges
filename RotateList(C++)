@@ -1,38 +1,38 @@
-    ListNode* rotateRight(ListNode* head, int k) {
+ListNode* rotateRight(ListNode* head, int k) {
 
-        if(k == 0 || head == NULL || head->next == NULL)return head;
-        
-        ListNode* tmp = head;
-        
-        int counter = 0;
-        
-        while(tmp != NULL){
-            ++counter;
-            tmp=tmp->next;
-        }        
-        
-        if(k > counter) k = k % counter;
-        if(k == 0)return head;
-         
-        int toMove = counter - k;
+    if(k == 0 || head == NULL || head->next == NULL)return head;
 
-        ListNode* newHead = head;
-        
-        while(toMove-- > 0) 
-                newHead = newHead->next;
-        
-        //Attach
-        ListNode* findEnd = newHead;
-        while(findEnd->next != NULL)
-            findEnd = findEnd->next;
-        
-        //Set tail
-        findEnd->next = head;
-        while(findEnd->next != newHead)
-            findEnd=findEnd->next;
-        
-        findEnd->next = NULL;
-            
- 
-        return newHead;
-    }
+    ListNode* tmp = head;
+
+    int counter = 0;
+
+    while(tmp != NULL){
+        ++counter;
+        tmp=tmp->next;
+    }        
+
+    if(k > counter) k = k % counter;
+    if(k == 0)return head;
+
+    int toMove = counter - k;
+
+    ListNode* newHead = head;
+
+    while(toMove-- > 0) 
+            newHead = newHead->next;
+
+    //Attach
+    ListNode* findEnd = newHead;
+    while(findEnd->next != NULL)
+        findEnd = findEnd->next;
+
+    //Set tail
+    findEnd->next = head;
+    while(findEnd->next != newHead)
+        findEnd=findEnd->next;
+
+    findEnd->next = NULL;
+
+
+    return newHead;
+}
