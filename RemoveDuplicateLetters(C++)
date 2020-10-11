@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        
+        set<char> s1;
+        
+        for(char c : s){
+            s1.insert(c);
+        }
+        
+        auto it = s1.begin();
+        
+        stringstream str;
+        
+        while(it != s1.end()){
+            str << *it++;
+        }
+        
+        return str.str();
+    }
+};
