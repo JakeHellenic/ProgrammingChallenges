@@ -1,0 +1,24 @@
+
+public ListNode sortList(ListNode head) {
+
+    if(head == null || head.next == null) return head;
+
+    ListNode slow = head;
+    ListNode fast = head.next;
+    boolean complete = true;
+
+    while(slow != null && fast != null){
+        if(slow.val > fast.val){
+            int val = fast.val;
+            fast.val = slow.val;
+            slow.val = val;
+            complete = false;
+        }
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    if(!complete)sortList(head);
+
+    return head;
+}
