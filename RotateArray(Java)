@@ -1,0 +1,29 @@
+public void rotate(int[] nums, int k) {
+
+	if(nums == null || nums.length == 0)return;
+
+	int nums_length = nums.length;
+
+	k = nums_length < k ? k % nums_length: k;
+
+	int[] toMove = new int[k];
+
+	int counter = 0;
+  
+	for(int i = nums_length - k;i<nums_length;i++){
+		toMove[counter++] = nums[i];
+	}
+
+	counter = k;
+
+	for(int i = (nums_length-k)-1;i>=0;i--){
+		nums[i+k] = nums[i];
+		if(i == 0){
+			while(i < k){
+				nums[i] = toMove[i];
+				++i;
+			}
+			break;
+		}
+	}
+}
