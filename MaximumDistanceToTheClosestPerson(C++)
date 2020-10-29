@@ -1,0 +1,27 @@
+int maxDistToClosest(vector<int>& seats) {
+
+    int zero_counter = 0, max_dist = 0, index = 0;
+
+    while(seats[zero_counter] == 0){
+        zero_counter++;
+    }
+
+    max_dist = zero_counter;
+    zero_counter = 0;
+
+    for(int i=0;i<seats.size();i++){
+        if(seats[i] == 1){
+            if(zero_counter>0)
+                max_dist = max(max_dist, zero_counter % 2 == 0 ? zero_counter/2 : zero_counter/2 + 1);
+            zero_counter = 0;
+        }
+        else {
+            ++zero_counter;   
+            if(index == (seats.size()-1) && zero_counter > 0){
+                return max(max_dist, zero_counter);
+            }
+        }
+    ++index;
+    }
+    return max_dist;
+}
